@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actacomes Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-color: #050505;
+            --grid-color: #1a1a24;
+            --text-main: #e0e0e0;
+            --text-muted: #888899;
+            --accent-neon: #00ffcc;
+            --accent-pink: #ff007f;
+            --panel-bg: rgba(10, 10, 15, 0.85);
+            --border-color: rgba(0, 255, 204, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Glitch effect or subtle scanline */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            z-index: 10;
+            margin-top: 5vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-family: 'Fira Code', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px var(--accent-neon), 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+        
+        .academic-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-neon);
+            padding: 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.05);
+            backdrop-filter: blur(5px);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .panel:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px rgba(0, 255, 204, 0.15);
+            border-left: 4px solid var(--accent-pink);
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, transparent 50%, rgba(0, 255, 204, 0.2) 50%);
+        }
+
+        .panel h2 {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-neon);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel h2::before {
+            content: ">_";
+            color: var(--text-muted);
+        }
+
+        .panel p {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #333;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #aaddff;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--accent-neon);
+            border: 1px solid var(--accent-neon);
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .btn:hover {
+            background: var(--accent-neon);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-neon);
+        }
+        
+        .btn-primary {
+            background: rgba(0, 255, 204, 0.1);
+        }
+
+        .footer {
+            margin-top: auto;
+            padding: 2rem 0;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: var(--accent-neon);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .metadata {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-pink);
+        }
+        
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ACTACOMES<span class="terminal-cursor"></span></h1>
+            <div class="academic-subtitle">Applied Computational Sciences & AI</div>
+        </header>
+
+        <main>
+            <section class="panel">
+                <h2>Project: CodingCoach</h2>
+                
+                <div class="metadata">
+                    <span class="metadata-item">[SYS] USACO Tutor</span>
+                    <span class="metadata-item">[VER] 1.0.0</span>
+                    <span class="metadata-item">[ARCH] Linux x86_64</span>
+                </div>
+
+                <p>
+                    CodingCoach is our advanced, standalone tutoring environment designed to help students master competitive programming algorithms (USACO). 
+                    The application integrates an isolated Python sandbox with AI-assisted guidance to provide a secure and robust educational platform.
+                </p>
+
+                <div class="code-block">
+$ sha256sum USACO_Tutor_Linux_x86_64.tar.gz
+06270eb50d245fa9337ed4de8a972012de8101ad8ea2366b66e89e2768a4ab9b  USACO_Tutor_Linux_x86_64.tar.gz
+                </div>
+
+                <p>
+                    The latest release bundles the Python 3.10 sandbox and our execution engine. It requires no external dependencies and runs completely offline once downloaded.
+                </p>
+
+                <a href="https://github.com/actacomes/CodingCoach/releases/download/v1.0.0/USACO_Tutor_Linux_x86_64.tar.gz" class="btn btn-primary">
+                    [ DOWNLOAD v1.0.0 ]
+                </a>
+            </section>
+
+            <section class="panel">
+                <h2>Research Directive</h2>
+                <p>
+                    At Actacomes, we focus on the intersection of human-computer interaction, autonomous tutoring agents, and secure sandbox execution environments. 
+                    Our mission is to democratize high-level algorithmic education through intelligent, zero-configuration desktop applications.
+                </p>
+                <p>
+                    For inquiries or academic collaborations, please refer to our repository guidelines.
+                </p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 Actacomes. All systems nominal.</p>
+        </footer>
+    </div>
+</body>
+</html>
