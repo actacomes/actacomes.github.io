@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Actacomes 静态软件目录：桌面应用、研究工具与经过验证的正式发布。">
+  <title>Actacomes · 软件目录</title>
+  <style>
+    :root {
+      --ink: #eefbf6;
+      --muted: #96aea5;
+      --subtle: #60756e;
+      --accent: #78ebc3;
+      --accent-strong: #21c995;
+      --warm: #ffd28c;
+      --bg: #06100d;
+      --panel: rgba(13, 27, 23, 0.88);
+      --panel-solid: #0c1b17;
+      --line: rgba(120, 235, 195, 0.18);
+      --line-strong: rgba(120, 235, 195, 0.42);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% -10%, rgba(33, 201, 149, 0.2), transparent 34rem),
+        radial-gradient(circle at 95% 15%, rgba(66, 107, 225, 0.13), transparent 32rem),
+        linear-gradient(180deg, #07130f 0%, var(--bg) 58%, #040907 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      opacity: 0.25;
+      background-image:
+        linear-gradient(rgba(120, 235, 195, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 235, 195, 0.07) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--warm);
+      outline-offset: 4px;
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 13px;
+      color: #03110c;
+      background: var(--accent);
+      box-shadow: 0 0 28px rgba(120, 235, 195, 0.2);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-weight: 900;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .header-nav a {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .header-nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      padding-block: 50px 80px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 48px;
+      align-items: end;
+      padding: 58px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(120, 235, 195, 0.1), transparent 43%),
+        var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      width: 8px;
+      height: 8px;
+      content: "";
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 16px var(--accent);
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(3.2rem, 8vw, 6.6rem);
+      font-weight: 800;
+      letter-spacing: -0.065em;
+      line-height: 0.92;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(3, 12, 9, 0.5);
+    }
+
+    .hero-aside strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.05rem;
+    }
+
+    .hero-aside p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .hero-aside-item + .hero-aside-item {
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section {
+      padding-top: 66px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 1.08;
+    }
+
+    .section-copy {
+      max-width: 510px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: right;
+    }
+
+    .software-list {
+      display: grid;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: software;
+    }
+
+    .software-list > li {
+      counter-increment: software;
+    }
+
+    .software-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr) minmax(220px, 0.48fr);
+      gap: 30px;
+      align-items: center;
+      padding: 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.17);
+    }
+
+    .software-card::after {
+      position: absolute;
+      top: 19px;
+      right: 22px;
+      color: var(--subtle);
+      content: "0" counter(software);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .software-visual {
+      display: grid;
+      min-height: 180px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 32% 28%, rgba(120, 235, 195, 0.22), transparent 42%),
+        #071410;
+    }
+
+    .app-icon {
+      position: relative;
+      display: grid;
+      width: 92px;
+      height: 92px;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 28px;
+      color: #04110d;
+      background: var(--accent);
+      box-shadow: 0 20px 50px rgba(33, 201, 149, 0.2);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+    }
+
+    .app-icon::after {
+      position: absolute;
+      right: -8px;
+      bottom: -8px;
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border: 4px solid #071410;
+      border-radius: 50%;
+      content: "✓";
+      color: #03110c;
+      background: var(--warm);
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .product-label {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .product-title {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      letter-spacing: -0.045em;
+      line-height: 1.1;
+    }
+
+    .product-description {
+      max-width: 630px;
+      margin: 13px 0 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #b7ccc5;
+      background: rgba(255, 255, 255, 0.025);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .product-actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 13px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.025);
+      font-size: 0.88rem;
+      font-weight: 760;
+      text-decoration: none;
+      transition: 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(120, 235, 195, 0.08);
+    }
+
+    .button.primary {
+      border-color: var(--accent);
+      color: #03110c;
+      background: var(--accent);
+    }
+
+    .button.primary:hover {
+      background: #9af3d4;
+      box-shadow: 0 12px 30px rgba(33, 201, 149, 0.18);
+    }
+
+    .release-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--line);
+    }
+
+    .release-facts div {
+      padding: 12px;
+      background: var(--panel-solid);
+    }
+
+    .release-facts span,
+    .release-facts strong {
+      display: block;
+    }
+
+    .release-facts span {
+      color: var(--subtle);
+      font-size: 0.67rem;
+      font-weight: 780;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .release-facts strong {
+      margin-top: 3px;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    details {
+      margin-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    summary {
+      padding-top: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    details ol {
+      margin: 11px 0 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .upcoming-card {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+      padding: 26px 30px;
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius);
+      color: var(--muted);
+      background: rgba(13, 27, 23, 0.45);
+    }
+
+    .upcoming-icon {
+      display: grid;
+      width: 64px;
+      height: 64px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 1.3rem;
+    }
+
+    .upcoming-card h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.05rem;
+    }
+
+    .upcoming-card p {
+      margin: 4px 0 0;
+      font-size: 0.86rem;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .principle {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(13, 27, 23, 0.65);
+    }
+
+    .principle strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.94rem;
+    }
+
+    .principle p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-block: 28px 40px;
+      border-top: 1px solid var(--line);
+      color: var(--subtle);
+      font-size: 0.8rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 940px) {
+      .hero,
+      .software-card {
+        grid-template-columns: 1fr;
+      }
+
+      .software-visual {
+        min-height: 150px;
+      }
+
+      .product-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .principles {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 24px, 1160px);
+      }
+
+      .site-header {
+        padding-block: 17px;
+      }
+
+      .brand-name,
+      .header-nav a:first-child {
+        display: none;
+      }
+
+      main {
+        padding-top: 24px;
+      }
+
+      .hero {
+        gap: 30px;
+        padding: 30px 22px;
+        border-radius: var(--radius);
+      }
+
+      h1 {
+        font-size: clamp(3rem, 17vw, 4.8rem);
+      }
+
+      .section-head,
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .section-copy {
+        text-align: left;
+      }
+
+      .software-card {
+        gap: 22px;
+        padding: 20px;
+      }
+
+      .product-actions,
+      .release-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .upcoming-card {
+        grid-template-columns: 1fr;
+        padding: 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section id="software" class="section" aria-labelledby="software-title">
+      <div class="section-head">
+        <h2 id="software-title">软件目录</h2>
+      </div>
+
+      <!--
+        添加下一款软件时：复制下面的 <li>，修改名称、说明、标签、
+        版本、平台及两个静态链接。不要复用未经核对的旧 Release 地址。
+      -->
+      <ol class="software-list">
+        <li>
+          <article class="software-card" aria-labelledby="codecoach-title">
+            <div class="software-visual" aria-hidden="true">
+              <div class="app-icon">CC</div>
+            </div>
+
+            <div>
+              <p class="product-label">Desktop · AI Education</p>
+              <h3 id="codecoach-title" class="product-title">CodeCoach</h3>
+              <p class="product-description">
+                面向算法和编程学习的桌面 AI 教练，提供循序引导、练习建议与隔离的本地代码执行环境，适合竞赛算法和日常编程训练。
+              </p>
+              <ul class="tags" aria-label="CodeCoach 特性">
+                <li>Windows 10/11</li>
+                <li>x86_64</li>
+                <li>Portable</li>
+                <li>AI Tutor</li>
+              </ul>
+
+              <div class="release-facts" aria-label="CodeCoach 发布信息">
+                <div><span>版本</span><strong>v1.0.0</strong></div>
+                <div><span>格式</span><strong>EXE</strong></div>
+                <div><span>架构</span><strong>x86_64</strong></div>
+              </div>
+
+              <details>
+                <summary>简要安装说明</summary>
+                <ol>
+                  <li>下载 Portable EXE 到当前用户有写入权限的目录。</li>
+                  <li>完整退出旧版本后，再运行或替换应用文件。</li>
+                  <li>Windows 首次运行若显示安全提示，请先确认文件来自下方官方 GitHub Release。</li>
+                </ol>
+              </details>
+            </div>
+
+            <div class="product-actions">
+              <a class="button primary" href="https://github.com/actacomes/CodeCoach/releases/download/v1.0.0/CodeCoach-Portable-Windows-x86_64-1.0.0.exe" rel="noopener noreferrer">
+                下载 Windows 版
+              </a>
+              <a class="button" href="https://github.com/actacomes/CodeCoach/releases/tag/v1.0.0" rel="noopener noreferrer">
+                查看发布说明 ↗
+              </a>
+            </div>
+          </article>
+        </li>
+
+        <li>
+          <article class="upcoming-card" aria-labelledby="upcoming-title">
+            <div class="upcoming-icon" aria-hidden="true">＋</div>
+            <div>
+              <h3 id="upcoming-title">更多软件将在完成发布验证后加入</h3>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>
