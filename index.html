@@ -1,96 +1,112 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="CodeCoach 官方发布与跨平台下载页面。">
-  <title>CodeCoach · 官方发布</title>
-  <style>
-    :root {
-      --bg: #07110f;
-      --surface: rgba(13, 27, 24, 0.86);
-      --surface-strong: #10211d;
-      --line: rgba(126, 234, 199, 0.2);
-      --line-strong: rgba(126, 234, 199, 0.45);
-      --text: #eefbf6;
-      --muted: #9bb8ae;
-      --accent: #7eeac7;
-      --accent-strong: #2bd3a1;
-      --warning: #ffd68a;
-      --danger: #ff9d9d;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
-      --radius: 24px;
-    }
+          集中获取 Actacomes 发布的桌面应用与研究工具。这里使用固定、经过核对的版本和下载地址，不在浏览器中请求第三方 API。
+        </p>
+      </div>
+      <aside class="hero-aside" aria-label="下载页说明">
+        <div class="hero-aside-item">
+          <strong>静态发布目录</strong>
+          <p>每个版本在发布前人工核对文件名、平台和 GitHub Release 地址。</p>
+        </div>
+        <div class="hero-aside-item">
+          <strong>按软件独立维护</strong>
+          <p>新软件会作为新的列表项加入，不影响已有产品和历史链接。</p>
+        </div>
+      </aside>
+    </section>
 
-    * {
-      box-sizing: border-box;
-    }
+    <section id="software" class="section" aria-labelledby="software-title">
+      <div class="section-head">
+        <h2 id="software-title">软件目录</h2>
+        <p class="section-copy">仅展示已经存在并完成链接核对的发布。CodeCoach 是当前目录中的第一个正式软件。</p>
+      </div>
 
-    html {
-      scroll-behavior: smooth;
-    }
+      <!--
+        添加下一款软件时：复制下面的 <li>，修改名称、说明、标签、
+        版本、平台及两个静态链接。不要复用未经核对的旧 Release 地址。
+      -->
+      <ol class="software-list">
+        <li>
+          <article class="software-card" aria-labelledby="codecoach-title">
+            <div class="software-visual" aria-hidden="true">
+              <div class="app-icon">CC</div>
+            </div>
 
-    body {
-      min-width: 320px;
-      min-height: 100vh;
-      margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 8% 0%, rgba(43, 211, 161, 0.17), transparent 32rem),
-        radial-gradient(circle at 92% 18%, rgba(80, 125, 255, 0.11), transparent 30rem),
-        linear-gradient(180deg, #07110f 0%, #081411 56%, #050a09 100%);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-    }
+            <div>
+              <p class="product-label">Desktop · AI Education</p>
+              <h3 id="codecoach-title" class="product-title">CodeCoach</h3>
+              <p class="product-description">
+                面向算法和编程学习的桌面 AI 教练，提供循序引导、练习建议与隔离的本地代码执行环境，适合竞赛算法和日常编程训练。
+              </p>
+              <ul class="tags" aria-label="CodeCoach 特性">
+                <li>Windows 10/11</li>
+                <li>x86_64</li>
+                <li>Portable</li>
+                <li>AI Tutor</li>
+              </ul>
 
-    body::before {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      content: "";
-      opacity: 0.22;
-      background-image:
-        linear-gradient(rgba(126, 234, 199, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(126, 234, 199, 0.08) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(to bottom, black, transparent 82%);
-    }
+              <div class="release-facts" aria-label="CodeCoach 发布信息">
+                <div><span>版本</span><strong>v1.0.0</strong></div>
+                <div><span>格式</span><strong>EXE</strong></div>
+                <div><span>架构</span><strong>x86_64</strong></div>
+              </div>
 
-    a {
-      color: inherit;
-    }
+              <details>
+                <summary>简要安装说明</summary>
+                <ol>
+                  <li>下载 Portable EXE 到当前用户有写入权限的目录。</li>
+                  <li>完整退出旧版本后，再运行或替换应用文件。</li>
+                  <li>Windows 首次运行若显示安全提示，请先确认文件来自下方官方 GitHub Release。</li>
+                </ol>
+              </details>
+            </div>
 
-    a:focus-visible,
-    button:focus-visible {
-      outline: 3px solid var(--warning);
-      outline-offset: 4px;
-    }
+            <div class="product-actions">
+              <a class="button primary" href="https://github.com/actacomes/CodeCoach/releases/download/v1.0.0/CodeCoach-Portable-Windows-x86_64-1.0.0.exe" rel="noopener noreferrer">
+                下载 Windows 版
+              </a>
+              <a class="button" href="https://github.com/actacomes/CodeCoach/releases/tag/v1.0.0" rel="noopener noreferrer">
+                查看发布说明 ↗
+              </a>
+            </div>
+          </article>
+        </li>
 
-    .shell {
-      width: min(1180px, calc(100% - 36px));
-      margin: 0 auto;
-    }
+        <li>
+          <article class="upcoming-card" aria-labelledby="upcoming-title">
+            <div class="upcoming-icon" aria-hidden="true">＋</div>
+            <div>
+              <h3 id="upcoming-title">更多软件将在完成发布验证后加入</h3>
+              <p>此页面已经按多软件列表设计；新增产品时复制一个软件卡片并填写经过核对的静态 Release 链接即可。</p>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
 
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 24px 0;
-    }
+    <section class="section" aria-labelledby="principles-title">
+      <div class="section-head">
+        <h2 id="principles-title">发布原则</h2>
+        <p class="section-copy">简洁、可验证，并让每个下载按钮明确对应一个软件、版本和平台。</p>
+      </div>
+      <div class="principles">
+        <article class="principle">
+          <strong>固定版本</strong>
+          <p>按钮指向明确的 GitHub tag 和文件名，页面内容不会因 API 缓存或临时故障改变。</p>
+        </article>
+        <article class="principle">
+          <strong>平台清晰</strong>
+          <p>在下载前显示操作系统、处理器架构和文件格式，减少下载错误。</p>
+        </article>
+        <article class="principle">
+          <strong>来源透明</strong>
+          <p>正式文件托管在对应软件的 GitHub Release，发布说明与下载入口相互独立。</p>
+        </article>
+      </div>
+    </section>
+  </main>
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--text);
-      font-size: 0.96rem;
-      font-weight: 750;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
-    .brand-mark {
-      display: grid;
+  <footer class="shell">
+    <span>© 2026 Actacomes · Official software distribution</span>
+    <a href="https://github.com/actacomes/actacomes.github.io" rel="noopener noreferrer">网站仓库 ↗</a>
+  </footer>
+</body>
+</html>
